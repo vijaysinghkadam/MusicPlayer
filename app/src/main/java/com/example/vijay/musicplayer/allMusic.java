@@ -2,12 +2,14 @@ package com.example.vijay.musicplayer;
 
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -58,6 +60,16 @@ public class allMusic extends Fragment {
 
                 musicArrayAdapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,songs);
                 musicList.setAdapter(musicArrayAdapter);
+
+                musicList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(getActivity(),player.class);
+                        intent.putExtra("songFileList",musics);
+                        intent.putExtra("position",position);
+                        startActivity(intent);
+                    }
+                });
             }
 
             @Override
@@ -85,6 +97,7 @@ public class allMusic extends Fragment {
                 if(currentFile.getName().endsWith(".mp3") || currentFile.getName().endsWith(".mp4a") || currentFile.getName().endsWith(".wav"))
                 allMusicFilesObject.add(currentFile);
             }
+
         }
 
         return allMusicFilesObject;
