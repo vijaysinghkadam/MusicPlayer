@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -33,6 +34,7 @@ public class allMusic extends Fragment {
     ArrayAdapter<String> musicArrayAdapter;
     String songs[];
     ArrayList<File> musics;
+    boolean flag_loading=false;
 
     public allMusic() {
         // Required empty public constructor
@@ -70,6 +72,7 @@ public class allMusic extends Fragment {
                         startActivity(intent);
                     }
                 });
+
             }
 
             @Override
@@ -104,3 +107,4 @@ public class allMusic extends Fragment {
     }
 
 }
+
